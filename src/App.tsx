@@ -10,7 +10,7 @@ import Forgotpassword from './pages/forgotpassword';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Layout>
         <Routes>
           <Route path='*' element={<Navigate to='/' replace={true} />}/>
@@ -23,7 +23,7 @@ function App() {
           <Route path='/forgotpassword' element={<Forgotpassword/>}/>
         </Routes>
       </Layout>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
