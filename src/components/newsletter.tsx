@@ -14,7 +14,7 @@ export default function Newsletter(props: {setNewsletterShown: Dispatcher<boolea
   };
 
   const handleKeyboardEvent = (e: KeyboardEvent<HTMLLabelElement>): void =>{
-    if(e.keyCode === 13) {
+    if(e.code === 'Enter') {
       newsletterClose();
     }
   }

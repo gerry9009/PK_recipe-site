@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import { Dispatch, SetStateAction, useState, useEffect, useRef, KeyboardEventHandler} from 'react';
+import { Dispatch, SetStateAction, useState, useEffect, useRef, KeyboardEvent} from 'react';
 import SearchImg from '../img/search2.png';
 
 import Headersearch from './headersearch';
@@ -75,7 +75,7 @@ export default function Header(props: {setNewsletterShown: Dispatcher<boolean>, 
 
   }
 
-  const keyDownkHamburgerMenu = (e: KeyboardEventHandler<HTMLElement>) => {
+  const keyDownkHamburgerMenu = (e: KeyboardEvent<HTMLElement>) => {
     if(e.code === 'Enter'){
       if(isMenuActive === false){
         setHamburgerMenuClass('hamburger-menu-active');

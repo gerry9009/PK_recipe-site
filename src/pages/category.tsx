@@ -9,12 +9,12 @@ export default function Category() {
   const navigate = useNavigate();
   const [recipeItems, setRecipeItems] = useState<Array<JSX.Element>>([<></>]);
   const [displayLocation, setDisplayLocation] = useState<string>();
-  const {category} = useParams();
+  const {category} = useParams<string>();
 
   const url: string = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
 
   const toJsxElement = (result: Array<JSON>) => {
-    const res: Array<JSX.Element> = result.map(r => <Recipeitem strMeal = {r.strMeal} strMealThumb = {r.strMealThumb} strCategory = {category?.replaceAll('-',' ')} key={r.idMeal}/>);
+    const res: Array<JSX.Element> = result.map(r => <Recipeitem strMeal = {r.strMeal} strMealThumb = {r.strMealThumb} strCategory = {category!.replaceAll('-',' ')} key={r.idMeal}/>);
     return res;
   };
 

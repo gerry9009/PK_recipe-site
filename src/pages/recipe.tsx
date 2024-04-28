@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect, useRef, KeyboardEvent} from 'react';
 import { useParams } from 'react-router-dom';
 import RecipeApiName from '../recipeapi/recipeapiname';
 import RecipeDiscription from '../components/recipediscription';
@@ -17,7 +17,6 @@ export default function Recipe() {
   const url: string = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 
   const toJsxElement = (result: JSON) => {
-    //for ciklus
     let res:Array<JSX.Element> = [];
     for(let i = 1; i< 21; i++){
       if(result[`strIngredient${i}`] !==''){
@@ -56,6 +55,12 @@ export default function Recipe() {
     setReadMore(false);
   };
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if(e.code === 'Ener'){
+      handleClick();
+    }
+  };
+
 
 
   return (
@@ -71,7 +76,10 @@ export default function Recipe() {
           <div className='recipe-main '>
             <div className={`recipe-video-text ${hideRecipe}`}>
               { youtubeVideo !== '' &&
-                <iframe src={youtubeVideo} width="560" height="315" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                <iframe src={youtubeVideo} width="560" height="315" frameBorder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
+                </iframe>
               }
               <p>
                 {recipeDiscription.strInstructions}
@@ -88,20 +96,11 @@ export default function Recipe() {
               </div>
             </div>
 
-            {readMore && <div className='read-more' onClick={handleClick}>
+            {readMore && <div className='read-more' onClick={handleClick} tabIndex={0} onKeyDown={handleKeyDown}>
               Read more
             </div>}
           </div>
-
-          
-
-          
-
-          
-        
-        
         </div>
-        
     </main>
   )
 }

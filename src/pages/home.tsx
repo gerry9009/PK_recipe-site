@@ -49,9 +49,8 @@ export default function Home() {
     };
 
     let name: string = target.name.value;
-    //átnézni
     while(true){
-      if(name.length !== 1){
+      if(name.length > 1){
         if(name.slice(name.length - 2, name.length - 1) === ' '){
           name = name.slice(0, name.length - 2);
         }
@@ -69,7 +68,6 @@ export default function Home() {
     }
 
     if(name.slice(0,name.length - 1) !== ''){
-      //kell(target.name.value);
       navigate(`/search/${name.toLowerCase().replaceAll(' ', '-')}`);
     }
     

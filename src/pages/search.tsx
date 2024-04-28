@@ -1,10 +1,9 @@
 import SearchImg from '../img/search2.png';
-import { SyntheticEvent, Dispatch, SetStateAction, useState, useRef, useEffect} from 'react';
+import { SyntheticEvent, useState, useEffect} from 'react';
 import Recipeitem from '../components/recipeitem';
 import RecipeApiName from '../recipeapi/recipeapiname';
-import { useNavigate, useSearchParams, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 
-type Dispatcher<S> = Dispatch<SetStateAction<S>>;
 
 export default function Search() {
 

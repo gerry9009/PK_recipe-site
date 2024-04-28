@@ -1,4 +1,4 @@
-import { SetStateAction, Dispatch, SyntheticEvent, useRef, useEffect, KeyboardEventHandler } from "react";
+import { SetStateAction, Dispatch, SyntheticEvent, useRef, useEffect, KeyboardEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchImg from '../img/search2.png';
 
@@ -52,7 +52,7 @@ export default function Headersearch(props: {formShow: boolean, setFormShow:Disp
         props.setFormShow(false);
     };
 
-    const handleKeyDownHideSearch = (e: KeyboardEventHandler<HTMLLabelElement>) => {
+    const handleKeyDownHideSearch = (e: KeyboardEvent<HTMLLabelElement>) => {
         if(e.code === 'Enter') {
             props.setFormShow(false);
         }
