@@ -1,6 +1,6 @@
 # Recept weboldal
 
-## Githu pages: https://kevinbencs.github.io/recipe-site/
+## Github pages: https://kevinbencs.github.io/recipe-site/
 
 Itt látható egy általam létrehozott recept weboldal kódja.
 
