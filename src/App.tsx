@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate, HashRouter } from 'react-router-dom';
 import Home from './pages/home';
 import Layout from './components/layout';
 import Search from './pages/search';
@@ -10,7 +10,7 @@ import Forgotpassword from './pages/forgotpassword';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Layout>
         <Routes>
           <Route path='*' element={<Navigate to='/' replace={true} />}/>
@@ -23,7 +23,7 @@ function App() {
           <Route path='/forgotpassword' element={<Forgotpassword/>}/>
         </Routes>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
