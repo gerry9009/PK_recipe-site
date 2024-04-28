@@ -30,24 +30,24 @@ export default function Category() {
     return result.meals as unknown as ApiItem[];
   },[]);
 
-  const toJsxElement = useCallback((result: JSON) => {
-    const apiItem = toApiItem (result);
-    const apiItemObject = toApiItemObject(apiItem);
-    const res: Array<JSX.Element> = apiItemObject.map(r => <Recipeitem strMeal = {r.strMeal} strMealThumb = {r.strMealThumb} strCategory = {category!.replaceAll('-',' ')} key={r.idMeal}/>);
+  const toJsxElement = useCallback((result: Array<ApiItem>) => {
+    const res: Array<JSX.Element> = result.map(r => <Recipeitem strMeal = {r.strMeal} strMealThumb = {r.strMealThumb} strCategory = {category!.replaceAll('-',' ')} key={r.idMeal}/>);
     return res;
-  },[toApiItemObject, toApiItem, category]);
+  },[category]);
 
 
   const recipeApi = useCallback( async() => {
     const apiData: JSON = await RecipeApiName({url: url + category?.replaceAll('-',' ')});
-    if(apiData === null){
+    const apiItem = toApiItem (apiData);
+    const apiItemObject = toApiItemObject(apiItem);
+    if(apiItemObject === null){
       navigate('/');
     }
     else{
-      setRecipeItems(toJsxElement(apiData));
+      setRecipeItems(toJsxElement(apiItemObject));
     }
     
-  },[toJsxElement, navigate, category]);
+  },[toJsxElement, navigate, category, toApiItemObject, toApiItem]);
 
   useEffect(() =>{
     if (displayLocation !== category){
