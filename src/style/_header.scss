@@ -339,21 +339,40 @@ header{
 @media screen and (max-width: 720px) {
     header{
         .header-newsletter{
-            justify-content: flex-start;
+            margin: 0;
+            flex-direction: column;
+            justify-content: space-between;
             nav{
-                margin: 0 10px;
+                margin: 10px 0 0 10px;
             }
             .newsletter-search-button{
-                width: 200px;
+                width: 100vw;
+                justify-content: space-between;
+                padding: 0 10px;
                 .search-show-button{
                     margin: 0 5px;
                 }
                 .signin-signup{
-                    flex-direction: column;
                     align-items: center;
+                    width: 200px;
                     a{
                         margin-bottom: 5px;
                     }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    header{
+        .form-container{
+            padding-bottom: 20px;
+            align-items: flex-end;
+            form{
+                width: 80vw;
+                .name-search{
+                    width: calc(80vw - 120.55px - 4px);
                 }
             }
         }

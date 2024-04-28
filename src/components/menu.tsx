@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 type Dispatcher<S> = Dispatch<SetStateAction<S>>
 
-export default function Menu(props: {isMenuActive: boolean, showSliderMenu: boolean, setMenuActive: Dispatcher<boolean>}) {
+export default function Menu(props: {isMenuActive: boolean, showSliderMenu: boolean, setMenuActive: Dispatcher<boolean>, setHamburgerMenuClass:Dispatcher<string>}) {
     const settings = {
         arrows: false,
         dots: false,
@@ -22,6 +22,7 @@ export default function Menu(props: {isMenuActive: boolean, showSliderMenu: bool
 
     const clickLinkMenu = () => {
         props.setMenuActive(false);
+        props.setHamburgerMenuClass('');
     };
 
 

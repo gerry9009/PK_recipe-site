@@ -43,7 +43,7 @@ export default function Header(props: {setNewsletterShown: Dispatcher<boolean>, 
 
 
   useEffect(() => {
-    if(windowSize<1000){
+    if(windowSize<1001){
       setShowSliderMenu(false);
     }
     else{
@@ -121,7 +121,7 @@ export default function Header(props: {setNewsletterShown: Dispatcher<boolean>, 
         </label>
       }
       
-      <Menu isMenuActive = {isMenuActive} showSliderMenu = {showSliderMenu} setMenuActive={setMenuActive}/>
+      <Menu isMenuActive = {isMenuActive} showSliderMenu = {showSliderMenu} setMenuActive={setMenuActive} setHamburgerMenuClass = {setHamburgerMenuClass}/>
           
         
     </header>

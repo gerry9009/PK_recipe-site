@@ -1,9 +1,18 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import { useParams } from 'react-router-dom';
 import Recipeitem from '../components/recipeitem';
 import RecipeApiName from '../recipeapi/recipeapiname';
 import { useNavigate } from 'react-router-dom';
 
+interface ApiItem {
+  strMeal: string,
+  strMealThumb: string,
+  idMeal: string
+};
+
+interface Api{
+  meals: Array<JSON>
+};
 
 export default function Category() {
   const navigate = useNavigate();
@@ -12,15 +21,25 @@ export default function Category() {
   const {category} = useParams<string>();
 
   const url: string = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
+  
+  const toApiItem =useCallback( (result: JSON) => {
+    return result as unknown as Api;
+  },[]);
 
-  const toJsxElement = (result: Array<JSON>) => {
-    const res: Array<JSX.Element> = result.map(r => <Recipeitem strMeal = {r.strMeal} strMealThumb = {r.strMealThumb} strCategory = {category!.replaceAll('-',' ')} key={r.idMeal}/>);
+  const toApiItemObject = useCallback((result: Api) => {
+    return result.meals as unknown as ApiItem[];
+  },[]);
+
+  const toJsxElement = useCallback((result: JSON) => {
+    const apiItem = toApiItem (result);
+    const apiItemObject = toApiItemObject(apiItem);
+    const res: Array<JSX.Element> = apiItemObject.map(r => <Recipeitem strMeal = {r.strMeal} strMealThumb = {r.strMealThumb} strCategory = {category!.replaceAll('-',' ')} key={r.idMeal}/>);
     return res;
-  };
+  },[toApiItemObject, toApiItem, category]);
 
 
-  const recipeApiHome = async() => {
-    const apiData: Array<JSON> = await RecipeApiName({url: url + category?.replaceAll('-',' ')});
+  const recipeApi = useCallback( async() => {
+    const apiData: JSON = await RecipeApiName({url: url + category?.replaceAll('-',' ')});
     if(apiData === null){
       navigate('/');
     }
@@ -28,14 +47,14 @@ export default function Category() {
       setRecipeItems(toJsxElement(apiData));
     }
     
-  }
+  },[toJsxElement, navigate, category]);
 
   useEffect(() =>{
     if (displayLocation !== category){
-      recipeApiHome();
+      recipeApi();
       setDisplayLocation(category);
     }
-  },[category]);
+  },[category, recipeApi, displayLocation]);
 
 
 

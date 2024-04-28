@@ -1,8 +1,8 @@
-export default function RecipeDiscription(props: {strIngredient :string, strMeasure: string}) {
+export default function RecipeDiscription(props: {strIngredient :string , strMeasure: string }) {
     
   return (
-    <div className="ingredient">
+    <li className="ingredient">
         {props.strMeasure} {props.strIngredient.toLowerCase()}
-    </div>
+    </li>
     )
 }
